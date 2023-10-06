@@ -1,13 +1,19 @@
+// Importing necessary Flutter material design library
 import 'package:flutter/material.dart';
 
+// Importing custom widgets and models
 import 'package:expense_tracker/widgets/chart/chart_bar.dart';
 import 'package:expense_tracker/models/expense.dart';
 
+// A stateless widget to represent a chart of expenses
 class Chart extends StatelessWidget {
+  // Constructor for the Chart widget
   const Chart({super.key, required this.expenses});
 
+  // List of expenses to be displayed in the chart
   final List<Expense> expenses;
 
+  // Getter to retrieve a list of expense buckets for each category
   List<ExpenseBucket> get buckets {
     return [
       ExpenseBucket.forCategory(expenses, Category.food),
@@ -17,6 +23,7 @@ class Chart extends StatelessWidget {
     ];
   }
 
+  // Getter to retrieve the maximum total expense from all buckets
   double get maxTotalExpense {
     double maxTotalExpense = 0;
 
@@ -29,10 +36,13 @@ class Chart extends StatelessWidget {
     return maxTotalExpense;
   }
 
+  // The build method to describe the part of the user interface represented by this widget
   @override
   Widget build(BuildContext context) {
+    // Determine if the current theme is dark mode
     final isDarkMode =
         MediaQuery.of(context).platformBrightness == Brightness.dark;
+
     return Container(
       margin: const EdgeInsets.all(16),
       padding: const EdgeInsets.symmetric(
@@ -58,7 +68,8 @@ class Chart extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                for (final bucket in buckets) // alternative to map()
+                // Loop through each bucket to create a bar for it
+                for (final bucket in buckets)
                   ChartBar(
                     fill: bucket.totalExpenses == 0
                         ? 0

@@ -1,9 +1,11 @@
+// Importing necessary widgets and models
 import 'package:expense_tracker/widgets/chart/chart.dart';
 import 'package:expense_tracker/widgets/new_expense.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/widgets/expenses_list/expenses_list.dart';
 
+// A stateful widget to represent the main expenses screen
 class Expenses extends StatefulWidget {
   const Expenses({super.key});
 
@@ -14,6 +16,7 @@ class Expenses extends StatefulWidget {
 }
 
 class _ExpensesState extends State<Expenses> {
+  // Sample list of registered expenses
   final List<Expense> _registeredExpenses = [
     Expense(
         title: 'Flutter Course',
@@ -27,6 +30,7 @@ class _ExpensesState extends State<Expenses> {
         category: Category.leisure),
   ];
 
+  // Function to open the overlay for adding a new expense
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
       isScrollControlled: true,
@@ -35,17 +39,20 @@ class _ExpensesState extends State<Expenses> {
     );
   }
 
+  // Function to add a new expense to the list
   void _addExpense(Expense expense) {
     setState(() {
       _registeredExpenses.add(expense);
     });
   }
 
+  // Function to remove an expense from the list
   void _removeExpense(Expense expense) {
     final expenseIndex = _registeredExpenses.indexOf(expense);
     setState(() {
       _registeredExpenses.remove(expense);
     });
+    // Show a snackbar notification for the removal
     ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -63,8 +70,10 @@ class _ExpensesState extends State<Expenses> {
     );
   }
 
+  // Variable to track the sorting order
   bool _isSortedByNewest = true;
 
+  // Function to sort expenses by date
   void _sortExpensesByDate() {
     setState(() {
       if (_isSortedByNewest) {
@@ -78,10 +87,12 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
+    // Default content when there are no expenses
     Widget mainContent = const Center(
       child: Text('No expenses found. Start adding some!'),
     );
 
+    // Update the content if there are expenses
     if (_registeredExpenses.isNotEmpty) {
       mainContent = ExpensesList(
         expenses: _registeredExpenses,

@@ -1,10 +1,15 @@
+// Importing necessary Flutter material design library
 import 'package:flutter/material.dart';
+
+// Importing the Expenses widget
 import 'package:expense_tracker/widgets/expenses.dart';
 
+// Define a color scheme based on a seed color
 var kColorScheme = ColorScheme.fromSeed(
   seedColor: const Color.fromARGB(255, 96, 59, 181),
 );
 
+// Define a dark color scheme based on a seed color
 var kDarkColorScheme = ColorScheme.fromSeed(
   brightness: Brightness.dark,
   seedColor: const Color.fromARGB(255, 5, 99, 125),
@@ -13,6 +18,7 @@ var kDarkColorScheme = ColorScheme.fromSeed(
 void main() {
   runApp(
     MaterialApp(
+      // Define the dark theme for the app
       darkTheme: ThemeData.dark().copyWith(
         useMaterial3: true,
         colorScheme: kDarkColorScheme,
@@ -30,6 +36,7 @@ void main() {
           ),
         ),
       ),
+      // Define the light theme for the app
       theme: ThemeData().copyWith(
         useMaterial3: true,
         colorScheme: kColorScheme,
@@ -57,8 +64,9 @@ void main() {
               ),
             ),
       ),
+      // Uncomment this line to set the theme mode based on system settings
       // themeMode: ThemeMode.system, // default
-      home: const Expenses(),
+      home: const Expenses(), // Set the home screen of the app
     ),
   );
 }
