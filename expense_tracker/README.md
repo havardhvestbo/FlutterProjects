@@ -61,7 +61,7 @@ expense_tracker/
 │
 ├── pubspec.yaml
 └── README.md
-
+```
 - **models**: Contains data models used in the application.
 - **widgets**: Contains the main building blocks of the app UI.
   - **chart**: Widgets related to the visual representation of expenses.
