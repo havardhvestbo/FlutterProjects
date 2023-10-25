@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// MainDrawer is a widget representing the main app drawer.
 class MainDrawer extends StatelessWidget {
   const MainDrawer({super.key, required this.onSelectScreen});
 
@@ -10,6 +11,7 @@ class MainDrawer extends StatelessWidget {
     return Drawer(
       child: Column(
         children: [
+          // DrawerHeader with app branding.
           DrawerHeader(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
@@ -42,6 +44,7 @@ class MainDrawer extends StatelessWidget {
               ],
             ),
           ),
+          // ListTile for Meals screen.
           ListTile(
             leading: Icon(
               Icons.restaurant,
@@ -59,6 +62,7 @@ class MainDrawer extends StatelessWidget {
               onSelectScreen('meals');
             },
           ),
+          // ListTile for Filters screen.
           ListTile(
             leading: Icon(
               Icons.settings,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// MealItemTrait is a widget representing a trait (icon and label) for a meal item.
 class MealItemTrait extends StatelessWidget {
   const MealItemTrait({
     super.key,

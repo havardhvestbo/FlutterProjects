@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:meals/models/meal.dart';
-import 'package:meals/screens/meal_details.dart'; // Import the file where MealDetailsScreen is defined
+import 'package:meals/screens/meal_details.dart'; // Ensure MealDetailsScreen is defined in this import
 
+/// A delegate class for customizing meal search behavior.
 class MealSearchDelegate extends SearchDelegate {
+  /// List of meals to search from.
   final List<Meal> meals;
 
+  /// Constructor to initialize with the list of [meals].
   MealSearchDelegate(this.meals);
 
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
-        icon: Icon(Icons.clear),
+        icon: const Icon(Icons.clear),
         onPressed: () {
-          query = '';
+          query = ''; // Clear the search query
         },
       ),
     ];
@@ -22,15 +25,16 @@ class MealSearchDelegate extends SearchDelegate {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: Icon(Icons.arrow_back),
+      icon: const Icon(Icons.arrow_back),
       onPressed: () {
-        close(context, null);
+        close(context, null); // Close the search bar
       },
     );
   }
 
   @override
   Widget buildResults(BuildContext context) {
+    // Filter the list of meals based on the search query
     final results = meals.where((meal) => meal.title.toLowerCase().contains(query.toLowerCase())).toList();
 
     return ListView.builder(
@@ -39,11 +43,10 @@ class MealSearchDelegate extends SearchDelegate {
         final meal = results[index];
         return ListTile(
           title: Text(meal.title),
-          // Add other meal details if needed
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => MealDetailsScreen(meal: meal),
+                builder: (context) => MealDetailsScreen(meal: meal), // Navigate to meal details screen
               ),
             );
           },
@@ -54,6 +57,7 @@ class MealSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
+    // Provide suggestions based on the search query
     final suggestions = meals.where((meal) => meal.title.toLowerCase().contains(query.toLowerCase())).toList();
 
     return ListView.builder(
@@ -62,11 +66,10 @@ class MealSearchDelegate extends SearchDelegate {
         final meal = suggestions[index];
         return ListTile(
           title: Text(meal.title),
-          // Add other meal details if needed
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => MealDetailsScreen(meal: meal),
+                builder: (context) => MealDetailsScreen(meal: meal), // Navigate to meal details screen
               ),
             );
           },

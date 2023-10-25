@@ -10,7 +10,9 @@ enum Affordability {
   luxurious,
 }
 
+/// Represents a recipe for a meal.
 class Meal {
+  /// Creates a [Meal] instance with specified details.
   const Meal({
     required this.id,
     required this.categories,
@@ -27,17 +29,42 @@ class Meal {
     required this.isVegetarian,
   });
 
+  /// Unique identifier of the meal.
   final String id;
+
+  /// Categories the meal belongs to.
   final List<String> categories;
+
+  /// Name of the meal.
   final String title;
+
+  /// URL for the meal's image.
   final String imageUrl;
+
+  /// Ingredients required for the meal.
   final List<String> ingredients;
+
+  /// Steps to prepare the meal.
   final List<String> steps;
+
+  /// Duration in minutes to prepare the meal.
   final int duration;
+
+  /// Complexity of preparing the meal.
   final Complexity complexity;
+
+  /// Affordability level of the meal.
   final Affordability affordability;
+
+  /// Indicates if the meal is gluten-free.
   final bool isGlutenFree;
+
+  /// Indicates if the meal is lactose-free.
   final bool isLactoseFree;
+
+  /// Indicates if the meal is vegan.
   final bool isVegan;
+
+  /// Indicates if the meal is vegetarian.
   final bool isVegetarian;
 }
